@@ -15,14 +15,6 @@ const galleryImages = galleryItems
 	.join("");
 gallery.insertAdjacentHTML("beforeend", galleryImages);
 
-const galleryChield = document.querySelector(".gallery");
-
-const handleImgClick = event => {
-	event.preventDefault();
-	if (event.target.nodeName === "IMG") {
-		const lightbox = new SimpleLightbox(".gallery a", { animationSpeed: 250 });
-	}
-};
-galleryChield.addEventListener("click", handleImgClick);
+const lightbox = new SimpleLightbox(".gallery a", { animationSpeed: 250 });
 
 console.log(galleryItems);

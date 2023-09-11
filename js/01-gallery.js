@@ -21,9 +21,19 @@ let instance = null;
 const modalImgOn = event => {
 	event.preventDefault();
 	if (event.target.nodeName === "IMG") {
-		instance = basicLightbox.create(`
+		instance = basicLightbox.create(
+			`
     <img src="${event.target.getAttribute("data-source")}" width="800" height="600">
-`);
+`,
+			{
+				onShow: () => {
+					window.addEventListener("keydown", modalImgClose);
+				},
+				onClose: () => {
+					window.removeEventListener("keydown", modalImgClose);
+				},
+			},
+		);
 		instance.show();
 	}
 };
@@ -36,6 +46,4 @@ const modalImgClose = event => {
 	}
 	return;
 };
-document.addEventListener("keydown", modalImgClose);
-
 console.log(galleryItems);
